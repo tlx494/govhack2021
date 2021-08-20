@@ -1,27 +1,10 @@
 # Govhack 2021
 
-## Backend (do this first)
-Setup virtual env
-```
-python3 -m venv env
-source env/bin/activate
-```
-
-Install requirements
-```
-pip3 install -r requirements.txt
-```
-
-Run backend
-```
-flask run
-```
-
 ## Frontend
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start-fe`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
