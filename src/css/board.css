@@ -1,0 +1,15 @@
+/*
+
+CSS for defining board layout
+
+*/
+
+.location {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+}
+
+.location-row {
+    background-color: yellow;
+}
