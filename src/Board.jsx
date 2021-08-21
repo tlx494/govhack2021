@@ -2,22 +2,22 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
 
-import { TOTAL_OUTER_ROWS, WIDTH_MODIFIER } from './Constants';
+import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT } from './Constants';
 
 export const Board = () => {
 
     const outerContainerStyle = {
         backgroundColor: '#D2E5D2',
-        width: WIDTH_MODIFIER + 'vw',
+        width: SIZE_MODIFIER + VIEWPORT_UNIT,
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
-        fontSize: WIDTH_MODIFIER / 60 + 'vw',
+        fontSize: SIZE_MODIFIER / 60 + VIEWPORT_UNIT,
         // overflow: 'hidden',
     }
     const innerContainerStyle = {
-        width: WIDTH_MODIFIER * 1.1 + 'vw',
+        width: SIZE_MODIFIER * 1.1 + VIEWPORT_UNIT,
     }
 
     // 3 rows. Top row and bottom row contain two corners each. 

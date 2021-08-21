@@ -1,4 +1,4 @@
-import { WIDTH_MODIFIER } from "./Constants";
+import { SIZE_MODIFIER, VIEWPORT_UNIT } from "./Constants";
 
 export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
@@ -17,11 +17,11 @@ export const Location = (props) => {
     const bodyColor = '#D2E5D2' // Slightly off white MMMMMYES
 
     const locationWidthModifier = 0.0917;
-    const locationWidthVal = WIDTH_MODIFIER * locationWidthModifier;
+    const locationWidthVal = SIZE_MODIFIER * locationWidthModifier;
 
-    const locationWidth = locationWidthVal + 'vw';
-    const locationHeadHeight = locationWidthVal * 0.3 + 'vw';
-    const locationBodyHeight = locationWidthVal * 0.7 + 'vw';
+    const locationWidth = locationWidthVal + VIEWPORT_UNIT;
+    const locationHeadHeight = locationWidthVal * 0.3 + VIEWPORT_UNIT;
+    const locationBodyHeight = locationWidthVal * 0.7 + VIEWPORT_UNIT;
 
     let rotateDegree = 0
     if (parentIndex === 1) {
@@ -65,7 +65,7 @@ export const Location = (props) => {
         const cornerTextStyle = {
             transform: `rotate(${textDegrees}deg)`,
             textAlign: "center",
-            padding: WIDTH_MODIFIER / 38 + 'vw',
+            padding: SIZE_MODIFIER / 38 + VIEWPORT_UNIT,
         }
 
         return (<div style={cornerStyle}>
