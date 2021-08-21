@@ -32,6 +32,6 @@ export const LocationRow = (props) => {
         }
     }
 
-    // return rows
-    return <div width={'50px'}> locationrow</div >
+    return rows
+    // return <div width={'50px'}> locationrow</div >
 }
