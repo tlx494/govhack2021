@@ -2,7 +2,11 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
 
+<<<<<<< HEAD
 import { TOTAL_ROW_LENGTH, TOTAL_OUTER_ROWS } from './Constants';
+=======
+import { TOTAL_ROW_LENGTH } from './Constants';
+>>>>>>> 77ae99faf8e38b5f46cad0c9cdec2b25b9790a0d
 
 export const Board = () => {
 
