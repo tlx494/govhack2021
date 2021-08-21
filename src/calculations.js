@@ -21,43 +21,31 @@ let minDeposit = 0.15; // Minimum loan to value ratio
 // let fatConstant = r * (1+r)^N / ((r+1)^N - 1);
 
 export const getHouseholdIncome = (lga, t) => {
-    return ageMultiple*coupleFactor*inputData[lga]['median_income_2021'];
+    return ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
 }
 
 export const getIncome = (lga, t) => {
-<<<<<<< HEAD
-    // household income for the t-th years
-    let householdIncome = ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
-    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
-
-    return householdIncome * (1 + incomeGrowth) ^ (t - 1)
-=======
     // household income after t years
-    let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
-    return getHouseholdIncome(lga, t)*(1+incomeGrowth)^t;
->>>>>>> 824a3b5796dda3aeb7e626e26f45647ead8d830e
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
 }
 
 export const getHousePrice = (lga, t) => {
     // the median property price in lga after t years
     let medianPrice = inputData[lga]['property_price_median'];
-    return medianPrice*(1+propGrowthRate)^t;
+    return medianPrice * (1 + propGrowthRate) ^ t;
 }
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
-    let r = (1+incomeGrowth)*(1+cashInterest);
-    return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^(t+1))/(1-r);
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    let r = (1 + incomeGrowth) * (1 + cashInterest);
+    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ (t + 1)) / (1 - r);
 }
 
 export const getNIS = (lga, t) => {
     // net income surplus at t-th year
-<<<<<<< HEAD
-    return getIncome(lga, t) * (1 - expenseRate + rentRate)
-=======
-    return getIncome(lga, t) * (1-expenseRate+rentRate) * (1-taxRate);
->>>>>>> 824a3b5796dda3aeb7e626e26f45647ead8d830e
+    return getIncome(lga, t) * (1 - expenseRate + rentRate) * (1 - taxRate);
 }
 
 export const getMaxPriceDeposit = (lga, t) => {
@@ -65,11 +53,7 @@ export const getMaxPriceDeposit = (lga, t) => {
 }
 
 export const getMaxPriceRepayments = (lga, t) => {
-<<<<<<< HEAD
-    // return getSavings(lga, t) + getNIS(lga, t) * fatConstant
-=======
-    return getSavings(lga, t) + getNIS(lga, t) * fatConstant;
->>>>>>> 824a3b5796dda3aeb7e626e26f45647ead8d830e
+    return getSavings(lga, t) + getNIS(lga, t) / fatConstant;
 }
 
 export const getMin = (x, y) => {
