@@ -1,0 +1,19 @@
+/*
+
+CSS for defining board layout
+
+*/
+
+body {
+    margin: 0 auto;
+}
+
+.no-margin-or-padding {
+    margin: 0;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: blue;
+}
