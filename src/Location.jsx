@@ -4,7 +4,7 @@ export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
     // parentIndex - 0 = upright,  1 = left,  2 = down, 3 = right
     // colour - colour of location bar
-    const { parentIndex, index, isCorner, horizontal, isLeft, year} = props;
+    const { parentIndex, index, isCorner, horizontal, isLeft, year } = props;
 
     // calculate the ranking of this one around the board, with the "go" square at 0 in the bottom-right,
     //  and the one behind it at 39 (40 total squares), going clockwise around the board
@@ -97,7 +97,7 @@ export const Location = (props) => {
     }
 
     const bodyContent = <>
-        {bodyName} { }
+        {bodyName} Rank: {ranking}
     </>
 
     // renders normal locations
