@@ -4,28 +4,28 @@ export const Location = (props) => {
     // colour - colour of location bar
     const { name, parentIndex, color } = props;
 
-    //Dynamic CSS values
+    // dynamic CSS values
     const innerBorderWidth = 1;
     const rotateDegree = parentIndex * 90
     const bodyName = name || "No Name :("
     const headColor = props.color || "purple"
-    const bodyColor = '#DDDDDD' // Slightly off white
+    const bodyColor = '#DDDDDD' // Slightly off white MMMMMYES
 
     const locStyle = {
         transform: `rotate(${rotateDegree}deg)`,
         width: '100%',
-        height: 100,
-        border: "1px solid black"
+        height: '100%',
+        border: '1px solid black',
     }
     const headStyle = {
-        width: '100%',
-        height: 20 - innerBorderWidth * 2,
+        width: '4vw',
+        height: '2vw',
         backgroundColor: headColor,
         border: `${innerBorderWidth}px solid black`
     }
     const bodyStyle = {
-        width: '100%',
-        height: 80 - innerBorderWidth * 2,
+        width: '4vw',
+        height: '2vw',
         textAlign: "center",
         backgroundColor: bodyColor,
         border: `${innerBorderWidth}px solid black`

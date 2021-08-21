@@ -6,7 +6,7 @@ import './css/main.scss';
 function App() {
   return (
     <div>
-      <Board></Board>
+      <Board />
     </div>
   );
 }

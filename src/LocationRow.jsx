@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 
 import { Location } from "./Location";
-import { Corner } from "./Corner";
 import { TOTAL_LOCATIONS_IN_A_ROW, TOTAL_ROW_LENGTH } from "./Constants";
 
 export const LocationRow = (props) => {
@@ -34,7 +33,7 @@ export const LocationRow = (props) => {
         for (var i = 0; i < TOTAL_LOCATIONS_IN_A_ROW; i++) {
             let key = i + props.index;
             rows.push(
-                <Row>
+                <Row sm={11}>
                     <Col sm={1} className="no-margin-or-padding" key={key} >
                         <Location key={key} horizontal index={i} parentIndex={props.index} />
                     </Col>
@@ -48,7 +47,7 @@ export const LocationRow = (props) => {
 
     // MAY NEED sm=... HERE
     if (horizontal) {
-        rows = <Row>{rows}</Row>
+        rows = <Row sm={11}>{rows}</Row>
     }
-    return <Row>{rows}</Row>
+    return <Row sm={11}>{rows}</Row>
 }
