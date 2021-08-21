@@ -21,8 +21,8 @@ export const LocationRow = (props) => {
         for (var i = 0; i < ROW_SIZE; i++) {
             let key = i + props.index;
             rows.push(
-                <Col key={key} sm={1} style={{ border: '2px solid brown' }}>asdf
-                    {/* <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index}></Location> */}
+                <Col key={key} style={{ border: '2px solid brown' }}>
+                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index}></Location>
                 </Col>
             )
         }
@@ -41,7 +41,7 @@ export const LocationRow = (props) => {
 
 
     // return rows
-    return <Container style={locRow}><Row sm={2} style={{ border: '2px solid green' }}>{rows}</Row></Container>
+    return <Container style={locRow}><Row style={{ border: '2px solid green' }}>{rows}</Row></Container>
     // return rows
     // // return <div width={'50px'}> locationrow</div >
 }
