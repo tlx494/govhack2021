@@ -1,10 +1,29 @@
-import { SIZE_MODIFIER, VIEWPORT_UNIT } from "./Constants";
+import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT } from "./Constants";
 
 export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
     // parentIndex - 0 = upright,  1 = left,  2 = down, 3 = right
     // colour - colour of location bar
     const { parentIndex, index, isCorner, horizontal, isLeft, year} = props;
+
+    // calculate the ranking of this one around the board, with the "go" square at 0 in the bottom-right,
+    //  and the one behind it at 39 (40 total squares), going clockwise around the board
+    let ranking = 0;
+    switch (parentIndex) {
+        case 0:
+            ranking = index;
+            break;
+        case 1:
+            if (isLeft) {
+                ranking = 11 + TOTAL_LOCATIONS_IN_A_ROW - index;
+            } else {
+                // ranking = 
+            }
+            break;
+        case 2:
+            ranking = 39 - index;
+    }
+
 
     const name = null;
     const color = null;
@@ -14,10 +33,9 @@ export const Location = (props) => {
 
     const bodyName = name || "No Name :("
     const headColor = color || "purple"
-    const bodyColor = '#D2E5D2' // Slightly off white MMMMMYES
-    const yearsTilAfford = year || ":rip:"
+    const bodyColor = MONOPOLY_BG_COLOR // Slightly off white MMMMMYES
 
-    const locationWidthModifier = 0.0917;
+    const locationWidthModifier = 0.0918;
     const locationWidthVal = SIZE_MODIFIER * locationWidthModifier;
 
     const locationWidth = locationWidthVal + VIEWPORT_UNIT;
@@ -72,27 +90,27 @@ export const Location = (props) => {
 
         return (<div style={cornerStyle}>
             <div style={cornerTextStyle}>
-                hello-
+                corner text here
             </div>
         </div>)
 
     }
 
+    const bodyContent = <>
+        {bodyName} { }
+    </>
+
     // renders normal locations
     let insideLocation;
     if (parentIndex === 0) { // if top row
         insideLocation = <>
-            <div style={{ ...bodyStyle }}>
-                {bodyName}{yearsTilAfford}
-            </div>
+            <div style={{ ...bodyStyle }}>{bodyContent}</div>
             <div style={{ ...headStyle }}></div>
         </>
     } else {
         insideLocation = <>
             <div style={headStyle}></div>
-            <div style={bodyStyle}>
-                {bodyName}{yearsTilAfford}
-            </div>
+            <div style={bodyStyle}>{bodyContent}</div>
         </>
     }
 

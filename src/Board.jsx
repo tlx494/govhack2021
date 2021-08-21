@@ -2,12 +2,12 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
 
-import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT } from './Constants';
+import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT, MONOPOLY_BG_COLOR } from './Constants';
 
 export const Board = () => {
 
     const outerContainerStyle = {
-        backgroundColor: '#D2E5D2',
+        backgroundColor: MONOPOLY_BG_COLOR,
         width: SIZE_MODIFIER + VIEWPORT_UNIT,
         position: 'absolute',
         top: '50%',
