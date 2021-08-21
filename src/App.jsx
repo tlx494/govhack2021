@@ -16,12 +16,12 @@ function App() {
     return () => window.removeEventListener('resize', updateMedia);
   });
 
-  return isDesktop ? <Board /> : <div styles={{
+  return isDesktop ? <Board /> : <p styles={{
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: `translate(-50%, -50%)`,
-  }}>Please use a device with a larger screen.</div>
+  }}>Please use a device with a larger screen.</p>
 }
 
 export default App;
