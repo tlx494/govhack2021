@@ -53,7 +53,7 @@ export const getMaxPriceDeposit = (lga, t) => {
 }
 
 export const getMaxPriceRepayments = (lga, t) => {
-    return getSavings(lga, t) + getNIS(lga, t) * fatConstant;
+    return getSavings(lga, t) + getNIS(lga, t) / fatConstant;
 }
 
 export const getMin = (x, y) => {
