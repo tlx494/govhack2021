@@ -40,7 +40,7 @@ export const getSavings = (lga, t) => {
     // sum of savings after t years
     let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
     let r = (1+incomeGrowth)*(1+cashInterest);
-    return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^(t+1))/(1-r);
+    return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^t)/(1-r);
 }
 
 export const getNIS = (lga, t) => {
