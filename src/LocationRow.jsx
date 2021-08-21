@@ -5,13 +5,7 @@ import { TOTAL_LOCATIONS_IN_A_ROW, TOTAL_ROW_LENGTH } from "./Constants";
 
 export const LocationRow = (props) => {
     const { parentIndex } = props.index;
-    // PROPS
     // index - number from 0-3, also represents orientation (Starting at 0 at top, clockwise)
-
-    const locRow = {
-        backgroundColor: 'yellow',
-        // border: '2px solid red',
-    }
 
     let rows = [];
     let horizontal = true;
@@ -34,7 +28,7 @@ export const LocationRow = (props) => {
         for (var i = 0; i < TOTAL_LOCATIONS_IN_A_ROW; i++) {
             let key = i + props.index;
             rows.push(
-                <Row sm={10}>
+                <Row>
                     <Col sm={1} className="no-margin-or-padding" key={key} >
                         <Location key={key + '-left'} horizontal={horizontal} index={i} isLeft={true} parentIndex={props.index} />
                     </Col>

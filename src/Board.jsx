@@ -6,19 +6,18 @@ import { TOTAL_OUTER_ROWS, WIDTH_MODIFIER } from './Constants';
 
 export const Board = () => {
 
-
-
     const outerContainerStyle = {
-        backgroundColor: 'grey',
+        backgroundColor: '#D2E5D2',
         width: WIDTH_MODIFIER + 'vw',
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
+        fontSize: WIDTH_MODIFIER / 60 + 'vw',
         // overflow: 'hidden',
     }
     const innerContainerStyle = {
-        width: WIDTH_MODIFIER * 1.08988 + 'vw',
+        width: WIDTH_MODIFIER * 1.1 + 'vw',
     }
 
     // 3 rows. Top row and bottom row contain two corners each. 

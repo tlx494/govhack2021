@@ -14,7 +14,7 @@ export const Location = (props) => {
 
     const bodyName = name || "No Name :("
     const headColor = color || "purple"
-    const bodyColor = '#DDDDDD' // Slightly off white MMMMMYES
+    const bodyColor = '#D2E5D2' // Slightly off white MMMMMYES
 
     const locationWidthModifier = 0.0917;
     const locationWidthVal = WIDTH_MODIFIER * locationWidthModifier;
@@ -37,7 +37,7 @@ export const Location = (props) => {
     const locStyle = {
         transform: `rotate(${rotateDegree}deg)`,
         position: 'relative',
-        backgroundColor: 'green',
+        backgroundColor: bodyColor,
     }
     const headStyle = {
         width: locationWidth,
@@ -49,7 +49,6 @@ export const Location = (props) => {
         width: locationWidth,
         height: locationBodyHeight,
         textAlign: "center",
-        backgroundColor: bodyColor,
         border: `${innerBorderWidth}px solid black`,
     }
 
@@ -66,7 +65,7 @@ export const Location = (props) => {
         const cornerTextStyle = {
             transform: `rotate(${textDegrees}deg)`,
             textAlign: "center",
-            padding: "50px 0"
+            padding: WIDTH_MODIFIER / 38 + 'vw',
         }
 
         return (<div style={cornerStyle}>
