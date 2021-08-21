@@ -4,7 +4,7 @@ export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
     // parentIndex - 0 = upright,  1 = left,  2 = down, 3 = right
     // colour - colour of location bar
-    const { parentIndex, index, isCorner, horizontal, isLeft } = props;
+    const { parentIndex, index, isCorner, horizontal, isLeft, year} = props;
 
     const name = null;
     const color = null;
@@ -15,6 +15,7 @@ export const Location = (props) => {
     const bodyName = name || "No Name :("
     const headColor = color || "purple"
     const bodyColor = '#D2E5D2' // Slightly off white MMMMMYES
+    const yearsTilAfford = year || ":rip:"
 
     const locationWidthModifier = 0.0917;
     const locationWidthVal = SIZE_MODIFIER * locationWidthModifier;
@@ -23,6 +24,7 @@ export const Location = (props) => {
     const locationHeadHeight = locationWidthVal * 0.3 + VIEWPORT_UNIT;
     const locationBodyHeight = locationWidthVal * 0.7 + VIEWPORT_UNIT;
 
+    // properies and styles for locations (non corners)
     let rotateDegree = 0
     if (parentIndex === 1) {
         if (isLeft) {
@@ -81,7 +83,7 @@ export const Location = (props) => {
     if (parentIndex === 0) { // if top row
         insideLocation = <>
             <div style={{ ...bodyStyle }}>
-                {bodyName}
+                {bodyName}{yearsTilAfford}
             </div>
             <div style={{ ...headStyle }}></div>
         </>
@@ -89,7 +91,7 @@ export const Location = (props) => {
         insideLocation = <>
             <div style={headStyle}></div>
             <div style={bodyStyle}>
-                {bodyName}
+                {bodyName}{yearsTilAfford}
             </div>
         </>
     }

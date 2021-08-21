@@ -21,6 +21,7 @@ function App() {
     top: '50%',
     left: '50%',
     transform: `translate(-50%, -50%)`,
+    // hahahhahahahahahahahahahahahahhahha
   }}>Please use a device with a larger screen.</p>
 }
 
