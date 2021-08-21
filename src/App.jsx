@@ -1,9 +1,11 @@
 import { Board } from './Board';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './css/main.scss';
+
 function App() {
   return (
-    <div className="App">
+    <div>
       <Board></Board>
     </div>
   );
