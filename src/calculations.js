@@ -13,7 +13,7 @@ export const getIncome = (lga, t) => {
 
 // just realised this live share will close
 
-//  ill push to git and someone can host a new one
+//  ill push to git and someone can host a new one done
 // 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
