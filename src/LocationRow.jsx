@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import { Location } from "./Location";
 import { Corner } from "./Corner";
+import { TOTAL_LOCATIONS_IN_A_ROW, TOTAL_ROW_LENGTH } from "./Constants";
 
 export const LocationRow = (props) => {
     // PROPS
@@ -9,49 +10,45 @@ export const LocationRow = (props) => {
 
     const locRow = {
         backgroundColor: 'yellow',
-        border: '2px solid red',
-        margin: 0,
-        padding: 0,
+        // border: '2px solid red',
     }
-
-    const locCol = {
-        paddingLeft: 0,
-        paddingRight: 0
-    }
-
-    // a single row contains 9 cards
-    const ROW_SIZE = 9;
-
 
     let rows = [];
     let horizontal = true;
     if ([0, 2].includes(props.index)) {
-        rows.push(<Col style={locCol} key={props.index + '0'}><Corner parentIndex={props.index} index={0}/></Col>);
-        for (var i = 0; i < ROW_SIZE; i++) {
+        for (var i = 0; i < TOTAL_ROW_LENGTH; i++) {
             let key = i + props.index;
+            let isCorner = false;
+            if ([0, TOTAL_ROW_LENGTH - 1].includes(i)) {
+                isCorner = true;
+            }
             rows.push(
-                <Col style={locCol} key={key}>
-                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                <Col sm={1} className="no-margin-or-padding" key={key} >
+                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} isCorner />
                 </Col>
             )
         }
-        rows.push(<Col style={locCol} key={props.index + '1'}><Corner parentIndex={props.index} index={9}/></Col>);
     } else {
         // create vertical row
         horizontal = false;
-        for (var i = 0; i < ROW_SIZE; i++) {
+        for (var i = 0; i < TOTAL_LOCATIONS_IN_A_ROW; i++) {
             let key = i + props.index;
             rows.push(
-                <Row key={key}>
-                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                <Row>
+                    <Col sm={1} className="no-margin-or-padding" key={key} >
+                        <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                    </Col>
+                    <Col sm={{ span: 1, offset: 9 }} style={{ padding: 0 }} key={key} >
+                        <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                    </Col>
                 </Row>
             )
         }
     }
 
-
-    // return rows
-    return <Row style={{ marginLeft: 0, marginRight: 0 }}>{rows}</Row>
-    // return rows
-    // // return <div width={'50px'}> locationrow</div >
+    // MAY NEED sm=... HERE
+    if (horizontal) {
+        rows = <Row>{rows}</Row>
+    }
+    return <Row>{rows}</Row>
 }
