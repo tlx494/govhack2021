@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 
 import { Location } from "./Location";
+import { Corner } from "./Corner";
 
 export const LocationRow = (props) => {
     // PROPS
@@ -14,10 +15,10 @@ export const LocationRow = (props) => {
     // a single row contains 9 cards
     const ROW_SIZE = 9;
 
-
     let rows = [];
     let horizontal = true;
     if ([0, 2].includes(props.index)) {
+        rows.push(<Col key={props.index + '0'} style={{ border: '2px solid brown' }}><Corner /></Col>);
         for (var i = 0; i < ROW_SIZE; i++) {
             let key = i + props.index;
             rows.push(
@@ -26,6 +27,7 @@ export const LocationRow = (props) => {
                 </Col>
             )
         }
+        rows.push(<Col key={props.index + '1'} style={{ border: '2px solid brown' }}><Corner /></Col>);
     } else {
         // create vertical row
         horizontal = false;
