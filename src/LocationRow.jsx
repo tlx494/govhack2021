@@ -9,7 +9,14 @@ export const LocationRow = (props) => {
 
     const locRow = {
         backgroundColor: 'yellow',
-        border: '2px solid orange'
+        border: '2px solid red',
+        margin: 0,
+        padding: 0,
+    }
+
+    const locCol = {
+        paddingLeft: 0,
+        paddingRight: 0
     }
 
     // a single row contains 9 cards
@@ -18,16 +25,16 @@ export const LocationRow = (props) => {
     let rows = [];
     let horizontal = true;
     if ([0, 2].includes(props.index)) {
-        rows.push(<Col key={props.index + '0'} style={{ border: '2px solid brown' }}><Corner /></Col>);
+        rows.push(<Col style={locCol} key={props.index + '0'}><Corner /></Col>);
         for (var i = 0; i < ROW_SIZE; i++) {
             let key = i + props.index;
             rows.push(
-                <Col key={key} style={{ border: '2px solid brown' }}>
-                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index}></Location>
+                <Col style={locCol} key={key}>
+                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
                 </Col>
             )
         }
-        rows.push(<Col key={props.index + '1'} style={{ border: '2px solid brown' }}><Corner /></Col>);
+        rows.push(<Col style={locCol} key={props.index + '1'}><Corner /></Col>);
     } else {
         // create vertical row
         horizontal = false;
@@ -35,7 +42,7 @@ export const LocationRow = (props) => {
             let key = i + props.index;
             rows.push(
                 <Row key={key}>
-                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index}></Location>
+                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
                 </Row>
             )
         }
@@ -43,7 +50,7 @@ export const LocationRow = (props) => {
 
 
     // return rows
-    return <Container style={locRow}><Row style={{ border: '2px solid green' }}>{rows}</Row></Container>
+    return <Row style={{ marginLeft: 0, marginRight: 0 }}>{rows}</Row>
     // return rows
     // // return <div width={'50px'}> locationrow</div >
 }

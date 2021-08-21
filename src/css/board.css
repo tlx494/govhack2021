@@ -3,3 +3,7 @@
 CSS for defining board layout
 
 */
+
+body {
+    margin: 0 auto;
+}

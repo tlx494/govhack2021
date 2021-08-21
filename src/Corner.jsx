@@ -1,3 +1,6 @@
 export const Corner = (props) => {
-    return <div className="corner">corner</div>
+    const cornerStyle = {
+        // border: ;
+    }
+    return <div style={cornerStyle}>corner</div>
 }

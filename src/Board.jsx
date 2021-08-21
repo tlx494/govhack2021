@@ -9,7 +9,6 @@ export const Board = () => {
 
     const outerRowStyle = {
         backgroundColor: 'grey',
-        border: '2px solid black',
     }
 
     const ROWS = 4
@@ -20,7 +19,7 @@ export const Board = () => {
     // 3 rows. Top row and bottom row contain two corners each. The middle row contains the entire vertical column of the left/right sides
     for (var i = 0; i < ROWS; i++) {
 
-        outerRows.push(<Row className="outer-row">
+        outerRows.push(<Row>
             <LocationRow className="location-row" key={i} index={i}></LocationRow>
         </Row>);
     }

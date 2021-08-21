@@ -30,22 +30,12 @@ export const Location = (props) => {
         backgroundColor: bodyColor,
         border: `${innerBorderWidth}px solid black`
     }
-    const locStyle2 = {
-        color: 'red',
-        width: '50px',
-        height: '50px',
-        border: '2px solid pink',
-        backgroundColor: props.horizontal ? 'blue' : 'green',
-    }
-    // return <div style={locStyle}>asdf
-    //     {/* <div className="location-group"></div >
-    //     <div className="location-base">
-    //         ~Loc Name~
-    //     </div > */}
-    return <div>
-        <div style={headStyle}></div >
-        <div style={bodyStyle}>
-            {bodyName}
-        </div >
-    </div>
+    return (
+        <div>
+            <div style={headStyle}></div >
+            <div style={bodyStyle}>
+                {bodyName}
+            </div >
+        </div>
+    )
 }
