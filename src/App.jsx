@@ -4,9 +4,7 @@ import { Board } from './Board';
 function App() {
   return (
     <div className="App">
-      <p>
-        <Board></Board>
-      </p>
+      <Board></Board>
     </div>
   );
 }

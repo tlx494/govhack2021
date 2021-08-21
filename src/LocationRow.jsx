@@ -11,24 +11,27 @@ export const LocationRow = (props) => {
 
 
     let rows = [];
+    let horizontal = true;
     if ([0, 2].includes(props.index)) {
         for (var i = 0; i < ROW_SIZE; i++) {
             rows.push(
                 <Col>
-                    <Location key={i} index={i} parentIndex={props.index}></Location>
+                    <Location key={i + horizontal} horizontal={horizontal} index={i} parentIndex={props.index}></Location>
                 </Col>
             )
         }
     } else {
         // create vertical row
+        horizontal = false;
         for (var i = 0; i < ROW_SIZE; i++) {
             rows.push(
                 <Row>
-                    <Location key={i} index={i} parentIndex={props.index}></Location>
+                    <Location key={i + horizontal} horizontal={horizontal} index={i} parentIndex={props.index}></Location>
                 </Row>
             )
         }
     }
 
-    return rows
+    // return rows
+    return <div width={'50px'}> locationrow</div >
 }

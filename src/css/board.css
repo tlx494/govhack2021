@@ -5,11 +5,15 @@ CSS for defining board layout
 */
 
 .location {
-    background-color: red;
-    width: 100%;
-    height: 100%;
+    color: red;
+    width: 50px;
+    height: 50px;
 }
 
 .location-row {
     background-color: yellow;
+}
+
+.outer-row {
+    background-color: grey;
 }
