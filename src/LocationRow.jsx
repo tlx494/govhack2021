@@ -4,6 +4,7 @@ import { Location } from "./Location";
 import { TOTAL_LOCATIONS_IN_A_ROW, TOTAL_ROW_LENGTH } from "./Constants";
 
 export const LocationRow = (props) => {
+    const { parentIndex } = props.index;
     // PROPS
     // index - number from 0-3, also represents orientation (Starting at 0 at top, clockwise)
 
@@ -19,7 +20,6 @@ export const LocationRow = (props) => {
             let key = i + props.index;
             let isCorner = false;
             if ([0, TOTAL_ROW_LENGTH - 1].includes(i)) {
-                console.log("wtf")
                 isCorner = true;
             }
             rows.push(
@@ -34,21 +34,20 @@ export const LocationRow = (props) => {
         for (var i = 0; i < TOTAL_LOCATIONS_IN_A_ROW; i++) {
             let key = i + props.index;
             rows.push(
-                <Row sm={11}>
+                <Row sm={10}>
                     <Col sm={1} className="no-margin-or-padding" key={key} >
-                        <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                        <Location key={key + '-left'} horizontal={horizontal} index={i} isLeft={true} parentIndex={props.index} />
                     </Col>
                     <Col sm={{ span: 1, offset: 9 }} style={{ padding: 0 }} key={key} >
-                        <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} />
+                        <Location key={key + '-right'} horizontal={horizontal} index={i} isLeft={false} parentIndex={props.index} />
                     </Col>
                 </Row>
             )
         }
     }
 
-    // MAY NEED sm=... HERE
     if (horizontal) {
-        rows = <Row sm={11}>{rows}</Row>
+        rows = <Row>{rows}</Row>
     }
-    return <Row sm={11}>{rows}</Row>
+    return rows
 }
