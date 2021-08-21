@@ -42,4 +42,6 @@ export const LocationRow = (props) => {
 
     // return rows
     return <Container style={locRow}><Row sm={2} style={{ border: '2px solid green' }}>{rows}</Row></Container>
+    // return rows
+    // // return <div width={'50px'}> locationrow</div >
 }
