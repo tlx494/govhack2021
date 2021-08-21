@@ -18,14 +18,14 @@ let loanInterst = 0.03; // Home loan interest rate
 let loanTenure = 30; // Home loan duration in years
 let minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = r * (1+r)^N / ((r+1)^N - 1);
+// let fatConstant = r * (1+r)^N / ((r+1)^N - 1);
 
 export const getIncome = (lga, t) => {
     // household income for the t-th years
-    let householdIncome = ageMultiple*coupleFactor*inputData[lga]['median_income_2021'];
-    let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
+    let householdIncome = ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
 
-    return householdIncome*(1+incomeGrowth)^(t-1)
+    return householdIncome * (1 + incomeGrowth) ^ (t - 1)
 }
 
 export const getHousePrice = (lga, t) => {
@@ -39,7 +39,7 @@ export const getSavings = (lga, t) => {
 
 export const getNIS = (lga, t) => {
     // net income surplus at t-th year
-    return getIncome(lga, t) * (1-expenseRate+rentRate)
+    return getIncome(lga, t) * (1 - expenseRate + rentRate)
 }
 
 export const getMaxPriceDeposit = (lga, t) => {
@@ -47,7 +47,7 @@ export const getMaxPriceDeposit = (lga, t) => {
 }
 
 export const getMaxPriceRepayments = (lga, t) => {
-    return getSavings(lga, t) + getNIS(lga, t) * fatConstant
+    // return getSavings(lga, t) + getNIS(lga, t) * fatConstant
 }
 
 export const getMin = (x, y) => {
@@ -58,7 +58,7 @@ export const getMin = (x, y) => {
 }
 
 export const getMaxPrice = (lga, t) => {
-    return getMin(getMaxPriceDeposit(lga,t), getMaxPriceRepayments(lga,t))
+    return getMin(getMaxPriceDeposit(lga, t), getMaxPriceRepayments(lga, t))
 }
 
 export const getTimeToStart = (base_lga, target_lga) => {
@@ -73,5 +73,5 @@ export const getTimeToStart = (base_lga, target_lga) => {
 }
 
 export const getTimes = (lga) => {
-    return [1,2,3,4,5,6,7,8,9,10,11,null,13,14,15,16,17,18,19,20,21,22,null,24,25,26,27,28,29,30,null,32,33,34,35,36]
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, null, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, null, 24, 25, 26, 27, 28, 29, 30, null, 32, 33, 34, 35, 36]
 }
