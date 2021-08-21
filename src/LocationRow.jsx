@@ -22,10 +22,11 @@ export const LocationRow = (props) => {
     // a single row contains 9 cards
     const ROW_SIZE = 9;
 
+
     let rows = [];
     let horizontal = true;
     if ([0, 2].includes(props.index)) {
-        rows.push(<Col style={locCol} key={props.index + '0'}><Corner /></Col>);
+        rows.push(<Col style={locCol} key={props.index + '0'}><Corner parentIndex={props.index} index={0}/></Col>);
         for (var i = 0; i < ROW_SIZE; i++) {
             let key = i + props.index;
             rows.push(
@@ -34,7 +35,7 @@ export const LocationRow = (props) => {
                 </Col>
             )
         }
-        rows.push(<Col style={locCol} key={props.index + '1'}><Corner /></Col>);
+        rows.push(<Col style={locCol} key={props.index + '1'}><Corner parentIndex={props.index} index={9}/></Col>);
     } else {
         // create vertical row
         horizontal = false;

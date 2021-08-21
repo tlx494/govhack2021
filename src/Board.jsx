@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
-import { Corner } from './Corner';
 
 import './css/board.css';
 
