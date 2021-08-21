@@ -1,3 +1,4 @@
+import { getQueriesForElement } from "@testing-library/react";
 import styled from "styled-components"
 
 export const Location = (props) => {
@@ -11,10 +12,17 @@ export const Location = (props) => {
         default:
             break;
     }
-    return <div className="location">
-        <div className="location-group"></div >
+    const locStyle = {
+        color: 'red',
+        width: '50px',
+        height: '50px',
+        border: '2px solid pink',
+        backgroundColor: props.horizontal ? 'blue' : 'green',
+    }
+    return <div style={locStyle}>asdf
+        {/* <div className="location-group"></div >
         <div className="location-base">
             ~Loc Name~
-        </div >
+        </div > */}
     </div>
 }
