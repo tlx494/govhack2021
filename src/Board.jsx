@@ -7,6 +7,11 @@ import './css/board.css';
 
 export const Board = () => {
 
+    const outerRowStyle = {
+        backgroundColor: 'grey',
+        border: '2px solid black',
+    }
+
     const ROWS = 4
 
     let outerRows = [];
@@ -20,9 +25,5 @@ export const Board = () => {
             </Row>);
     }
 
-    const board = (
-        <Container>{outerRows}</Container>
-    )
-
-    return board
+    return <Container style={outerRowStyle}>{outerRows}</Container>
 }

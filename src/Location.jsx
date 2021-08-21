@@ -6,7 +6,7 @@ export const Location = (props) => {
 
     //Dynamic CSS values
     const innerBorderWidth = 1;
-    const rotateDegree = parentIndex*90
+    const rotateDegree = parentIndex * 90
     const bodyName = name || "No Name :("
     const headColor = props.color || "purple"
     const bodyColor = '#DDDDDD' // Slightly off white
@@ -19,18 +19,30 @@ export const Location = (props) => {
     }
     const headStyle = {
         width: 100,
-        height: 20 - innerBorderWidth*2,
+        height: 20 - innerBorderWidth * 2,
         backgroundColor: headColor,
         border: `${innerBorderWidth}px solid black`
     }
     const bodyStyle = {
         width: 100,
-        height: 80 - innerBorderWidth*2,
+        height: 80 - innerBorderWidth * 2,
         textAlign: "center",
         backgroundColor: bodyColor,
         border: `${innerBorderWidth}px solid black`
     }
-    return <div style={locStyle}>
+    const locStyle2 = {
+        color: 'red',
+        width: '50px',
+        height: '50px',
+        border: '2px solid pink',
+        backgroundColor: props.horizontal ? 'blue' : 'green',
+    }
+    // return <div style={locStyle}>asdf
+    //     {/* <div className="location-group"></div >
+    //     <div className="location-base">
+    //         ~Loc Name~
+    //     </div > */}
+    return <div>
         <div style={headStyle}></div >
         <div style={bodyStyle}>
             {bodyName}
