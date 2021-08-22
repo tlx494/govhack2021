@@ -16,6 +16,14 @@ export const Board = () => {
         fontSize: SIZE_MODIFIER / 60 + VIEWPORT_UNIT,
         // overflow: 'hidden',
     }
+
+    const imgStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: `translate(-50%, -50%)`,
+    }
+
     const innerContainerStyle = {
         width: SIZE_MODIFIER * 1.1 + VIEWPORT_UNIT,
     }
@@ -31,7 +39,10 @@ export const Board = () => {
         );
     }
 
+    // const yearsArray = getTimes("Sydney");
+
     return <Container fluid style={outerContainerStyle}>
+        <img src="https://i.imgur.com/KeDqLyk.png" style={imgStyle} />
         <div style={innerContainerStyle}>
             {outerRows}
         </div>

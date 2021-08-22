@@ -2,6 +2,8 @@
 
 import { inputData } from './inputData';
 
+console.log(inputData)
+
 // Household constants
 const expenseRate = 0.85; // Household expense as percentage of disposable income
 const rentRate = 0.225; // Household rent expenditure as percentage of disposable income
@@ -18,7 +20,7 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = loanInterest * (1+loanInterest)^loanTenure / ((1+loanInterest)^loanTenure - 1);
+let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((1 + loanInterest) ^ loanTenure - 1);
 
 let targetList = [
     "Campbelltown",
@@ -52,8 +54,12 @@ export const getHouseholdIncome = (lga, t) => {
 
 export const getIncome = (lga, t) => {
     // household income after t years
-    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
-    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
+    if (inputData.hasProperty(lga)) {
+        let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+        return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
+    }
+    console.log('Could not find LGA:', lga)
+    return null
 }
 
 export const getHousePrice = (lga, t) => {
@@ -64,9 +70,9 @@ export const getHousePrice = (lga, t) => {
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
-    let r = (1+incomeGrowth)*(1+cashInterest);
-    return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^t)/(1-r);
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    let r = (1 + incomeGrowth) * (1 + cashInterest);
+    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);
 }
 
 export const getNIS = (lga, t) => {
@@ -107,14 +113,14 @@ export const getTimeToStart = (base_lga, target_lga) => {
 
 export const getTimes = (lga) => {
     let output = [];
-    for (let i=0; i < targetList.length; i++) {
+    for (let i = 0; i < targetList.length; i++) {
         let target = targetList[i];
         let years = getTimeToStart(lga, target)
     }
-    return [1,2,3,4,5,6,7,8,9,10,11,null,13,14,15,16,17,18,19,20,21,22,null,24,25,26,27,28,29,30,null,32,33,34,35,36]
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, null, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, null, 24, 25, 26, 27, 28, 29, 30, null, 32, 33, 34, 35, 36]
 }
 
 export const mapIndices = (ind) => {
-    let arr = [0,null, 1, null, null,2,null, 3, 4,null, 5, null, 6,7,null,8,null, 9,10, null, 11, null, 12,13,null,14,15,null, 16, null, 17,18,null,19,null,null,20,null,21,null];
+    let arr = [0, null, 1, null, null, 2, null, 3, 4, null, 5, null, 6, 7, null, 8, null, 9, 10, null, 11, null, 12, 13, null, 14, 15, null, 16, null, 17, 18, null, 19, null, null, 20, null, 21, null];
     return arr[ind]
 }
