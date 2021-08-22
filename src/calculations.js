@@ -1,8 +1,6 @@
 // calculations for LGA etc
-
-import { inputDataRaw } from './inputData';
-
-export const inputData = JSON.parse(inputDataRaw);
+import { lgaSpaces, targetList } from './Constants'
+import { inputData } from './inputData';
 
 // Household constants
 const expenseRate = 0.85; // Household expense as percentage of disposable income
@@ -19,55 +17,35 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((1 + loanInterest) ^ loanTenure - 1);
+let fatConstant = loanInterest * (1 + loanInterest) ** loanTenure / ((1 + loanInterest) ** loanTenure - 1);
 
-let targetList = [
-    "Campbelltown",
-    "Penrith",
-    "Liverpool",
-    "Wollongong",
-    "Blue Mountains",
-    "Blacktown",
-    "Ryde",
-    "Parramatta",
-    "Canterbury-Bankstown",
-    "Burwood",
-    "Sutherland Shire",
-    "Sydney",
-    "Hornsby",
-    "Lane Cove",
-    "North Sydney",
-    "Inner West",
-    "Randwick",
-    "Northern Beaches",
-    "Ku-ring-gai",
-    "Mosman",
-    "Hunters Hill",
-    "Woollahra"
-]
 
 export const getHouseholdIncome = (lga, t) => {
-    return ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
-    // asdf
+    const result = ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
+    return result
 }
 
 export const getIncome = (lga, t) => {
     // household income after t years
     let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
-    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
+    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ** t;
 }
 
 export const getHousePrice = (lga, t) => {
     // the median property price in lga after t years
     let medianPrice = inputData[lga]['property_price_median'];
-    return medianPrice * (1 + propGrowthRate) ^ t;
+    return medianPrice * (1 + propGrowthRate) ** t;
 }
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    let incomeGrowth = inputData[lga]["income_growth"];//+wageIncrease;
+
+    let incomeGrowth = inputData[lga]["income_growth"] + wageIncrease;
     let r = (1 + incomeGrowth) * (1 + cashInterest);
-    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);
+    let x = ((1 - (r ** t)) / (1 - r));
+    let z = 1 - x;
+    let result = (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * ((1 - (r ** t)) / (1 - r));
+    return result
 }
 
 export const getNIS = (lga, t) => {
@@ -91,13 +69,16 @@ export const getMin = (x, y) => {
 }
 
 export const getMaxPrice = (lga, t) => {
-    return getMin(getMaxPriceDeposit(lga, t), getMaxPriceRepayments(lga, t))
+    const x = getMaxPriceDeposit(lga, t);
+    const y = getMaxPriceRepayments(lga, t);
+    return getMin(x, y)
 }
 
 export const getTimeToStart = (base_lga, target_lga) => {
     for (let i = 0; i < 26; i++) {
         let max_possible = getMaxPrice(base_lga, i);
         let house_price = getHousePrice(target_lga, i);
+
         if (max_possible >= house_price) {
             return i;
         }
@@ -121,6 +102,7 @@ export const getTimes = (lga) => {
 // int if it's possible to buy a house
 export const getTimesAndFormat = (lga) => {
     let output = getTimes(lga);
+    console.log(output)
     let final_output = [];
     for (let i = 0; i < 40; i++) {
         let ind = mapIndicesFromLongToShort(i)
@@ -131,6 +113,7 @@ export const getTimesAndFormat = (lga) => {
             final_output.push(null)
         }
     }
+    return final_output;
 }
 
 // export const mapIndicesFromShortToLong = (ind) => {
@@ -140,6 +123,5 @@ export const getTimesAndFormat = (lga) => {
 
 // this is used to test getTimesAndFormat
 export const mapIndicesFromLongToShort = (ind) => {
-    let arr = [0, null, 1, null, null, 2, null, 3, 4, null, 5, null, 6, 7, null, 8, null, 9, 10, null, 11, null, 12, 13, null, 14, 15, null, 16, null, 17, 18, null, 19, null, null, 20, null, 21, null];
-    return arr[ind]
+    return lgaSpaces[ind]
 }

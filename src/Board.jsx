@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Dropdown, DropdownButton } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
-import { inputData } from './calculations';
+import { getTimes, getTimesAndFormat } from './calculations';
+import { inputData } from './inputData'
 
 import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT, MONOPOLY_BG_COLOR } from './Constants';
 
 export const Board = () => {
+    const [selectedName, setSelected] = useState("Woollahra")
 
     const outerContainerStyle = {
         backgroundColor: MONOPOLY_BG_COLOR,
@@ -14,7 +16,9 @@ export const Board = () => {
         top: '50%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
-        fontSize: SIZE_MODIFIER / 60 + VIEWPORT_UNIT,
+        fontSize: SIZE_MODIFIER / 90 + VIEWPORT_UNIT,
+        fontWeight: "bold",
+        fontFamily: "Arial",
         // overflow: 'hidden',
     }
 
@@ -38,14 +42,19 @@ export const Board = () => {
     for (var i = 0; i < TOTAL_OUTER_ROWS; i++) {
         outerRows.push(
             <Row>
-                <LocationRow key={i} index={i}></LocationRow>
+                <LocationRow key={i} index={i} selectedName={selectedName}></LocationRow>
             </Row>
         );
     }
 
+    // testing only
+    const printSelected = (suburb) => {
+        console.log(suburb)
+    }
+
     // fetching list of suburbs from inputData and using them to render a dropdown selection
     // TODO: where this href goes
-    const suburbItems = Object.keys(inputData).map((suburb) => <Dropdown.Item href="something">{suburb}</Dropdown.Item>)
+    const suburbItems = Object.keys(inputData).map((suburb) => <Dropdown.Item eventKey={suburb}>{suburb}</Dropdown.Item>)
     const suburbsDropdownStyle = {
         display: 'flex',
         alignItems: 'center',
@@ -53,7 +62,7 @@ export const Board = () => {
         margin: 15
     }
     const suburbsDropdown = <> 
-        <DropdownButton id="dropdown-basic-button" title="Where do you live? ಠ_ಠ" style={suburbsDropdownStyle}>
+        <DropdownButton id="dropdown-basic-button" title="Where do you live? ಠ_ಠ" style={suburbsDropdownStyle} onSelect={setSelected}>
             {suburbItems}
         </DropdownButton>
     </>
