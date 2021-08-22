@@ -18,7 +18,7 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = loanInterst * (1+loanInterst)^loanTenure / ((1+loanInterst)^loanTenure - 1);
+let fatConstant = loanInterest * (1+loanInterest)^loanTenure / ((1+loanInterest)^loanTenure - 1);
 
 let targetList = [
     "Campbelltown",
@@ -112,4 +112,9 @@ export const getTimes = (lga) => {
         let years = getTimeToStart(lga, target)
     }
     return [1,2,3,4,5,6,7,8,9,10,11,null,13,14,15,16,17,18,19,20,21,22,null,24,25,26,27,28,29,30,null,32,33,34,35,36]
+}
+
+export const mapIndices = (ind) => {
+    let arr = [0,null, 1, null, null,2,null, 3, 4,null, 5, null, 6,7,null,8,null, 9,10, null, 11, null, 12,13,null,14,15,null, 16, null, 17,18,null,19,null,null,20,null,21,null];
+    return arr[ind]
 }
