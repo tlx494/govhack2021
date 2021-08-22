@@ -18,6 +18,7 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
+<<<<<<< HEAD
 let fatConstant = loanInterst * (1+loanInterst)^loanTenure / ((1+loanInterst)^loanTenure - 1);
 
 let targetList = [
@@ -44,6 +45,9 @@ let targetList = [
     "Penrith",
     "Campbelltown"
 ]
+=======
+let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((loanInterest + 1) ^ loanTenure - 1);
+>>>>>>> 8d6585ef52ab6b5dc7286526c54e9261b1346136
 
 export const getHouseholdIncome = (lga, t) => {
     return ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
@@ -64,9 +68,15 @@ export const getHousePrice = (lga, t) => {
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
+<<<<<<< HEAD
     let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
     let r = (1+incomeGrowth)*(1+cashInterest);
     return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^t)/(1-r);
+=======
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    let r = (1 + incomeGrowth) * (1 + cashInterest);
+    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ (t + 1)) / (1 - r);
+>>>>>>> 8d6585ef52ab6b5dc7286526c54e9261b1346136
 }
 
 export const getNIS = (lga, t) => {
@@ -106,10 +116,14 @@ export const getTimeToStart = (base_lga, target_lga) => {
 }
 
 export const getTimes = (lga) => {
+<<<<<<< HEAD
     let output = [];
     for (let i=0; i < targetList.length; i++) {
         let target = targetList[i];
         let years = getTimeToStart(lga, target)
     }
     return [1,2,3,4,5,6,7,8,9,10,11,null,13,14,15,16,17,18,19,20,21,22,null,24,25,26,27,28,29,30,null,32,33,34,35,36]
+=======
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, null, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, null, 24, 25, 26, 27, 28, 29, 30, null, 32, 33, 34, 35, 36]
+>>>>>>> 8d6585ef52ab6b5dc7286526c54e9261b1346136
 }
