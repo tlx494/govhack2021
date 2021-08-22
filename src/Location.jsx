@@ -1,4 +1,5 @@
 import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT, COLORS, lgaSpaces, targetList } from "./Constants";
+import { getTimesAndFormat } from "./calculations";
 
 export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
@@ -32,8 +33,11 @@ export const Location = (props) => {
     const name = targetList[lgaSpaces[yearIndex]];
     const color = null;
 
+    const selectedName = "Hornsby" //REPLACE THIS WITH DROPDOWN SHIT
+
     const bodyName = name || ""
-    const yearsArray = null
+    const yearsArray = bodyName !== "" ? getTimesAndFormat(selectedName) : -1
+    console.log(">>>" + yearsArray)
     const years = yearsArray || ":rip:"
 
     const headColor = color || "purple"
@@ -100,9 +104,10 @@ export const Location = (props) => {
         border: `${innerBorderWidth}px solid black`,
     }
 
+    const stringYears = years[yearIndex] === -1 ? "Never" : years[yearIndex]
     const bodyLocContent = <div>
         <>{bodyName}</>
-        <div>{lgaSpaces[yearIndex] != null && `Year: ${yearIndex}`}</div>
+        <div>{lgaSpaces[yearIndex] != null && `Year: ${stringYears}`}</div>
     </div>
 
     let insideLocation;

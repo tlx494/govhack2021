@@ -32,6 +32,10 @@ export const Board = () => {
     const innerContainerStyle = {
         width: SIZE_MODIFIER * 1.1 + VIEWPORT_UNIT,
     }
+    // dropdown
+    // use keys for the JSON file as LGAs
+    let yearsArray = getTimes("Lane Cove");
+    console.log("years:", yearsArray);
 
     // 3 rows. Top row and bottom row contain two corners each. 
     // The middle row contains the entire vertical columns of the left/right sides
@@ -39,16 +43,12 @@ export const Board = () => {
     for (var i = 0; i < TOTAL_OUTER_ROWS; i++) {
         outerRows.push(
             <Row>
-                <LocationRow key={i} index={i}></LocationRow>
+                <LocationRow key={i} index={i} yearsArray={yearsArray}></LocationRow>
             </Row>
         );
     }
 
 
-    // dropdown
-    // use keys for the JSON file as LGAs
-    let yearsArray = getTimes("Lane Cove");
-    console.log(yearsArray);
 
 
     return <Container fluid style={outerContainerStyle}>
