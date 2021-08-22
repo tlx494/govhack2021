@@ -34,8 +34,9 @@ export const Location = (props) => {
     const color = null;
 
     const bodyName = name || "No Name :("
-    const yearsArray = getTimes("Sydney");
-    const years = yearsArray[yearIndex] || ":rip:"
+    // const yearsArray = getTimes("Sydney"); // only for testing, please replace with actual user input LGA
+    // I think we're supposed to call getTimesAndFormat()
+    // const years = yearsArray[yearIndex] || ":rip:"
 
     const headColor = color || "purple"
     const bodyColor = MONOPOLY_BG_COLOR // Slightly off white MMMMMYES
@@ -102,7 +103,7 @@ export const Location = (props) => {
     }
 
     const bodyLocContent = <>
-        {bodyName} Year: {years}
+        {/* {bodyName} Year: {years} */}
     </>
 
     let insideLocation;

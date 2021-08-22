@@ -13,7 +13,6 @@ const wageIncrease = 0.0056; // Wage growth for each additional year aged
 const ageMultiple = 1.17; // Adjustment factor for 30 yr olds earning more than population median
 const coupleFactor = 1.85; // Couple income as multiple of single income
 
-
 // Propert constants
 const propGrowthRate = 0.06129641461; // Annual property price growth rate
 const loanInterest = 0.03; // Home loan interest rate
@@ -70,7 +69,9 @@ export const getHousePrice = (lga, t) => {
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    console.log(lga)
+    console.log(inputData[lga])
+    let incomeGrowth = inputData[lga]["income_growth"];//+wageIncrease;
     let r = (1 + incomeGrowth) * (1 + cashInterest);
     return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);
 }
@@ -86,7 +87,6 @@ export const getMaxPriceDeposit = (lga, t) => {
 
 export const getMaxPriceRepayments = (lga, t) => {
     return getSavings(lga, t) + getNIS(lga, t) / fatConstant;
-    // return 0;
 }
 
 export const getMin = (x, y) => {
@@ -108,19 +108,44 @@ export const getTimeToStart = (base_lga, target_lga) => {
             return i;
         }
     }
-    return null;
+    return -1;
 }
 
 export const getTimes = (lga) => {
     let output = [];
     for (let i = 0; i < targetList.length; i++) {
         let target = targetList[i];
-        let years = getTimeToStart(lga, target)
+        let years = getTimeToStart(lga, target);
+        output.push(years);
     }
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, null, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, null, 24, 25, 26, 27, 28, 29, 30, null, 32, 33, 34, 35, 36]
+    return output;
 }
 
-export const mapIndices = (ind) => {
+// returns a list (len = 40) each corresponding to a value that should be populated in the location tiles around the board
+// null if it's a chance card or something that should not be populated
+// -1 if it's impossible to buy a house
+// int if it's possible to buy a house
+export const getTimesAndFormat = (lga) => {
+    let output = getTimes(lga);
+    let final_output = [];
+    for (let i = 0; i < 40; i++) {
+        let ind = mapIndicesFromLongToShort(i)
+        if (ind != null) {
+            final_output.push(output[ind])
+        }
+        else {
+            final_output.push(null)
+        }
+    }
+}
+
+// export const mapIndicesFromShortToLong = (ind) => {
+//        let arr = [0,2,5,7,8,10,12,13,15,17,18,20,22,23,25,26,28,30,31,33,36,38];
+//         return arr[ind];
+// }
+
+// this is used to test getTimesAndFormat
+export const mapIndicesFromLongToShort = (ind) => {
     let arr = [0, null, 1, null, null, 2, null, 3, 4, null, 5, null, 6, 7, null, 8, null, 9, 10, null, 11, null, 12, 13, null, 14, 15, null, 16, null, 17, 18, null, 19, null, null, 20, null, 21, null];
     return arr[ind]
 }

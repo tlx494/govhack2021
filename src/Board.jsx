@@ -39,7 +39,9 @@ export const Board = () => {
         );
     }
 
-    // const yearsArray = getTimes("Sydney");
+
+    // dropodown
+    // use keys for the JSON file as LGA's
 
     return <Container fluid style={outerContainerStyle}>
         <img src="https://i.imgur.com/KeDqLyk.png" style={imgStyle} />
