@@ -19,7 +19,7 @@ export const LocationRow = (props) => {
             let key = i + props.index;
             rows.push(
                 <Col sm={1} className="no-margin-or-padding" key={key} >
-                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} isCorner={isCorner} />
+                    <Location key={key} horizontal={horizontal} index={i} parentIndex={props.index} isCorner={isCorner} yearsArray={props.yearsArray} />
                 </Col>
             )
         }
@@ -32,10 +32,10 @@ export const LocationRow = (props) => {
             rows.push(
                 <Row>
                     <Col sm={1} className="no-margin-or-padding" key={key} >
-                        <Location key={key + '-left'} horizontal={horizontal} index={i} isLeft={true} parentIndex={props.index} />
+                        <Location key={key + '-left'} horizontal={horizontal} index={i} isLeft={true} parentIndex={props.index} yearsArray={props.yearsArray} />
                     </Col>
                     <Col sm={{ span: 1, offset: 9 }} style={{ padding: 0 }} key={key} >
-                        <Location key={key + '-right'} horizontal={horizontal} index={i} isLeft={false} parentIndex={props.index} />
+                        <Location key={key + '-right'} horizontal={horizontal} index={i} isLeft={false} parentIndex={props.index} yearsArray={props.yearsArray} />
                     </Col>
                 </Row>
             )
