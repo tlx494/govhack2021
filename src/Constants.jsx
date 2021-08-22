@@ -21,7 +21,7 @@ export const COLORS = [
 ]
 
 
-export const lgaSpaces = [0,null, 1, null, null,2,null, 3, 4, 5, null, 6,7,null,8,null, 9,10, 11, null, 12,13,null,14,15,null, 16, 17,18,null,19,null, null,20,null,21,null];
+export const lgaSpaces = [0, null, 1, null, null, 2, null, 3, 4, 5, null, 6, 7, null, 8, null, 9, 10, 11, null, 12, 13, null, 14, 15, null, 16, 17, 18, null, 19, null, null, 20, null, 21, null];
 export const targetList = [
     "Campbelltown",
     "Penrith",
@@ -31,7 +31,7 @@ export const targetList = [
     "Blacktown",
     "Ryde",
     "Parramatta",
-    "Canterbury-Bankstown",
+    "Georges River",
     "Burwood",
     "Sutherland Shire",
     "Sydney",
@@ -40,7 +40,7 @@ export const targetList = [
     "North Sydney",
     "Inner West",
     "Randwick",
-    "Northern Beaches",
+    "Willoughby",
     "Ku-ring-gai",
     "Mosman",
     "Hunters Hill",
