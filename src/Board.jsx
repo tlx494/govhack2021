@@ -13,7 +13,8 @@ export const Board = () => {
         top: '50%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
-        fontSize: SIZE_MODIFIER / 60 + VIEWPORT_UNIT,
+        fontSize: SIZE_MODIFIER / 85 + VIEWPORT_UNIT,
+        fontWeight: "bold"
         // overflow: 'hidden',
     }
     const innerContainerStyle = {
