@@ -18,7 +18,32 @@ let loanInterst = 0.03; // Home loan interest rate
 let loanTenure = 30; // Home loan duration in years
 let minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = r * (1+r)^N / ((r+1)^N - 1);
+let fatConstant = loanInterst * (1+loanInterst)^loanTenure / ((1+loanInterst)^loanTenure - 1);
+
+let targetList = [
+    "Woollahra",
+    "Hunters Hill",
+    "Mosman",
+    "Ku-ring-gai",
+    "Northern Beaches",
+    "Randwick",
+    "Inner West",
+    "North Sydney",
+    "Lane Cove",
+    "Hornsby",
+    "Sydney",
+    "Sutherland Shire",
+    "Burwood",
+    "Canterbury-Bankstown",
+    "Parramatta",
+    "Ryde",
+    "Blacktown",
+    "Blue Mountains",
+    "Wollongong",
+    "Liverpool",
+    "Penrith",
+    "Campbelltown"
+]
 
 export const getHouseholdIncome = (lga, t) => {
     return ageMultiple*coupleFactor*inputData[lga]['median_income_2021'];
@@ -79,5 +104,10 @@ export const getTimeToStart = (base_lga, target_lga) => {
 }
 
 export const getTimes = (lga) => {
+    let output = [];
+    for (let i=0; i < targetList.length; i++) {
+        let target = targetList[i];
+        let years = getTimeToStart(lga, target)
+    }
     return [1,2,3,4,5,6,7,8,9,10,11,null,13,14,15,16,17,18,19,20,21,22,null,24,25,26,27,28,29,30,null,32,33,34,35,36]
 }
