@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
-import { getTimes } from './calculations';
+import { getTimes, getTimesAndFormat } from './calculations';
 
 import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT, MONOPOLY_BG_COLOR } from './Constants';
 
@@ -33,8 +33,10 @@ export const Board = () => {
     }
     // dropdown
     // use keys for the JSON file as LGAs
-    let yearsArray = getTimes("Lane Cove");
+    let yearsArray = getTimes("Penrith");
+    let yearsArray2 = getTimesAndFormat("Penrith");
     console.log("years:", yearsArray);
+    console.log("years2:", yearsArray2);
 
     // 3 rows. Top row and bottom row contain two corners each. 
     // The middle row contains the entire vertical columns of the left/right sides

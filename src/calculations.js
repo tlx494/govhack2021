@@ -17,7 +17,7 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((1 + loanInterest) ^ loanTenure - 1);
+let fatConstant = loanInterest * (1 + loanInterest) ** loanTenure / ((1 + loanInterest) ** loanTenure - 1);
 
 let targetList = [
     "Campbelltown",
@@ -45,26 +45,31 @@ let targetList = [
 ]
 
 export const getHouseholdIncome = (lga, t) => {
-    return ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
+    const result = ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
+    return result
 }
 
 export const getIncome = (lga, t) => {
     // household income after t years
     let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
-    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
+    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ** t;
 }
 
 export const getHousePrice = (lga, t) => {
     // the median property price in lga after t years
     let medianPrice = inputData[lga]['property_price_median'];
-    return medianPrice * (1 + propGrowthRate) ^ t;
+    return medianPrice * (1 + propGrowthRate) ** t;
 }
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    let incomeGrowth = inputData[lga]["income_growth"];//+wageIncrease;
+
+    let incomeGrowth = inputData[lga]["income_growth"] + wageIncrease;
     let r = (1 + incomeGrowth) * (1 + cashInterest);
-    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);
+    let x = ((1 - (r ** t)) / (1 - r));
+    let z = 1 - x;
+    let result = (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * ((1 - (r ** t)) / (1 - r));
+    return result
 }
 
 export const getNIS = (lga, t) => {
@@ -88,7 +93,9 @@ export const getMin = (x, y) => {
 }
 
 export const getMaxPrice = (lga, t) => {
-    return getMin(getMaxPriceDeposit(lga, t), getMaxPriceRepayments(lga, t))
+    const x = getMaxPriceDeposit(lga, t);
+    const y = getMaxPriceRepayments(lga, t);
+    return getMin(x, y)
 }
 
 export const getTimeToStart = (base_lga, target_lga) => {
@@ -128,6 +135,7 @@ export const getTimesAndFormat = (lga) => {
             final_output.push(null)
         }
     }
+    return final_output;
 }
 
 // export const mapIndicesFromShortToLong = (ind) => {

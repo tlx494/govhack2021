@@ -27,6 +27,8 @@ export const Location = (props) => {
             yearIndex = 9 - index;
     }
 
+
+
     // dynamic CSS values
     const innerBorderWidth = 1;
     // constants
