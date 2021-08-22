@@ -1,6 +1,8 @@
 // calculations for LGA etc
 
-import { inputData } from './inputData';
+import { inputDataRaw } from './inputData';
+
+const inputData = JSON.parse(inputDataRaw);
 
 console.log(inputData)
 
@@ -53,12 +55,8 @@ export const getHouseholdIncome = (lga, t) => {
 
 export const getIncome = (lga, t) => {
     // household income after t years
-    if (inputData.hasProperty(lga)) {
-        let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
-        return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
-    }
-    console.log('Could not find LGA:', lga)
-    return null
+    let incomeGrowth = inputData[lga]['income_growth'] + wageIncrease;
+    return getHouseholdIncome(lga, t) * (1 + incomeGrowth) ^ t;
 }
 
 export const getHousePrice = (lga, t) => {
