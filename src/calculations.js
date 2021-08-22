@@ -1,7 +1,9 @@
 // calculations for LGA etc
-
-import { inputData } from './inputData';
 import { lgaSpaces, targetList } from './Constants'
+import { inputDataRaw } from './inputData';
+
+const inputData = JSON.parse(inputDataRaw);
+
 
 // Household constants
 const expenseRate = 0.85; // Household expense as percentage of disposable income
@@ -18,7 +20,7 @@ const loanInterest = 0.03; // Home loan interest rate
 const loanTenure = 30; // Home loan duration in years
 const minDeposit = 0.15; // Minimum loan to value ratio
 
-let fatConstant = loanInterest * (1+loanInterest)^loanTenure / ((1+loanInterest)^loanTenure - 1);
+let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((1 + loanInterest) ^ loanTenure - 1);
 
 
 export const getHouseholdIncome = (lga, t) => {
@@ -40,10 +42,11 @@ export const getHousePrice = (lga, t) => {
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    console.log(lga, inputData[lga])
-    let incomeGrowth = inputData[lga]['income_growth']+wageIncrease;
-    let r = (1+incomeGrowth)*(1+cashInterest);
-    return (1-expenseRate)*(1-taxRate)*getHouseholdIncome(lga, t)*(1-r^t)/(1-r);
+    console.log(lga)
+    console.log(inputData[lga])
+    let incomeGrowth = inputData[lga]["income_growth"];//+wageIncrease;
+    let r = (1 + incomeGrowth) * (1 + cashInterest);
+    return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);
 }
 
 export const getNIS = (lga, t) => {
@@ -83,7 +86,7 @@ export const getTimeToStart = (base_lga, target_lga) => {
 
 export const getTimes = (lga) => {
     let output = [];
-    for (let i=0; i < targetList.length; i++) {
+    for (let i = 0; i < targetList.length; i++) {
         let target = targetList[i];
         let years = getTimeToStart(lga, target);
         output.push(years);
@@ -91,10 +94,14 @@ export const getTimes = (lga) => {
     return output;
 }
 
+// returns a list (len = 40) each corresponding to a value that should be populated in the location tiles around the board
+// null if it's a chance card or something that should not be populated
+// -1 if it's impossible to buy a house
+// int if it's possible to buy a house
 export const getTimesAndFormat = (lga) => {
     let output = getTimes(lga);
     let final_output = [];
-    for (let i=0; i < 40; i++) {
+    for (let i = 0; i < 40; i++) {
         let ind = mapIndicesFromLongToShort(i)
         if (ind != null) {
             final_output.push(output[ind])
@@ -110,6 +117,7 @@ export const getTimesAndFormat = (lga) => {
 //         return arr[ind];
 // }
 
+// this is used to test getTimesAndFormat
 export const mapIndicesFromLongToShort = (ind) => {
     return lgaSpaces[ind]
 }

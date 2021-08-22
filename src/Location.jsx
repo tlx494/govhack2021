@@ -33,7 +33,7 @@ export const Location = (props) => {
     const color = null;
 
     const bodyName = name || ""
-    const yearsArray = null//getTimes();
+    const yearsArray = null
     const years = yearsArray || ":rip:"
 
     const headColor = color || "purple"

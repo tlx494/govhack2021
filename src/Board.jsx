@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
+import { getTimes } from './calculations';
 
 import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT, MONOPOLY_BG_COLOR } from './Constants';
 
@@ -17,6 +18,17 @@ export const Board = () => {
         fontWeight: "bold"
         // overflow: 'hidden',
     }
+
+    const imgStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: `translate(-50%, -50%)`,
+        objectFit: 'contain',
+        width: '100%',
+        height: SIZE_MODIFIER * 2.5,
+    }
+
     const innerContainerStyle = {
         width: SIZE_MODIFIER * 1.1 + VIEWPORT_UNIT,
     }
@@ -32,7 +44,15 @@ export const Board = () => {
         );
     }
 
+
+    // dropdown
+    // use keys for the JSON file as LGAs
+    let yearsArray = getTimes("Lane Cove");
+    console.log(yearsArray);
+
+
     return <Container fluid style={outerContainerStyle}>
+        <img src="https://i.imgur.com/KeDqLyk.png" style={imgStyle} />
         <div style={innerContainerStyle}>
             {outerRows}
         </div>
