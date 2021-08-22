@@ -2,9 +2,7 @@
 
 import { inputDataRaw } from './inputData';
 
-const inputData = JSON.parse(inputDataRaw);
-
-console.log(inputData)
+export const inputData = JSON.parse(inputDataRaw);
 
 // Household constants
 const expenseRate = 0.85; // Household expense as percentage of disposable income
@@ -67,8 +65,6 @@ export const getHousePrice = (lga, t) => {
 
 export const getSavings = (lga, t) => {
     // sum of savings after t years
-    console.log(lga)
-    console.log(inputData[lga])
     let incomeGrowth = inputData[lga]["income_growth"];//+wageIncrease;
     let r = (1 + incomeGrowth) * (1 + cashInterest);
     return (1 - expenseRate) * (1 - taxRate) * getHouseholdIncome(lga, t) * (1 - r ^ t) / (1 - r);

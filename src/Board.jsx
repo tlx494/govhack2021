@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Dropdown, DropdownButton } from 'react-bootstrap';
 import { LocationRow } from './LocationRow';
-import { getTimes } from './calculations';
+import { inputData } from './calculations';
 
 import { TOTAL_OUTER_ROWS, SIZE_MODIFIER, VIEWPORT_UNIT, MONOPOLY_BG_COLOR } from './Constants';
 
@@ -43,18 +43,29 @@ export const Board = () => {
         );
     }
 
-
-    // dropdown
-    // use keys for the JSON file as LGAs
-    let yearsArray = getTimes("Lane Cove");
-    console.log(yearsArray);
-
-
-    return <Container fluid style={outerContainerStyle}>
-        <img src="https://i.imgur.com/KeDqLyk.png" style={imgStyle} />
-        <div style={innerContainerStyle}>
-            {outerRows}
-        </div>
-    </Container>
+    // fetching list of suburbs from inputData and using them to render a dropdown selection
+    // TODO: where this href goes
+    const suburbItems = Object.keys(inputData).map((suburb) => <Dropdown.Item href="something">{suburb}</Dropdown.Item>)
+    const suburbsDropdownStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 15
+    }
+    const suburbsDropdown = <> 
+        <DropdownButton id="dropdown-basic-button" title="Where do you live? ಠ_ಠ" style={suburbsDropdownStyle}>
+            {suburbItems}
+        </DropdownButton>
+    </>
+    
+    return <div>
+        {suburbsDropdown}
+        <Container fluid style={outerContainerStyle}>
+            <img src="https://i.imgur.com/KeDqLyk.png" style={imgStyle} />
+            <div style={innerContainerStyle}>
+                {outerRows}
+            </div>
+        </Container>
+    </div>
     // return <div>{outerRows}</div>
 }
