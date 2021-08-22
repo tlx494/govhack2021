@@ -14,8 +14,9 @@ export const Board = () => {
         top: '50%',
         left: '50%',
         transform: `translate(-50%, -50%)`,
-        fontSize: SIZE_MODIFIER / 85 + VIEWPORT_UNIT,
-        fontWeight: "bold"
+        fontSize: SIZE_MODIFIER / 90 + VIEWPORT_UNIT,
+        fontWeight: "bold",
+        fontFamily: "Arial",
         // overflow: 'hidden',
     }
 
@@ -34,10 +35,7 @@ export const Board = () => {
     }
     // dropdown
     // use keys for the JSON file as LGAs
-    let yearsArray = getTimes("Penrith");
-    let yearsArray2 = getTimesAndFormat("Penrith");
-    console.log("years:", yearsArray);
-    console.log("years2:", yearsArray2);
+    let selectedName = "Woollahra"
 
     // 3 rows. Top row and bottom row contain two corners each. 
     // The middle row contains the entire vertical columns of the left/right sides
@@ -45,7 +43,7 @@ export const Board = () => {
     for (var i = 0; i < TOTAL_OUTER_ROWS; i++) {
         outerRows.push(
             <Row>
-                <LocationRow key={i} index={i} yearsArray={yearsArray}></LocationRow>
+                <LocationRow key={i} index={i} selectedName={selectedName}></LocationRow>
             </Row>
         );
     }

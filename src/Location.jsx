@@ -38,7 +38,7 @@ export const Location = (props) => {
     const selectedName = "Hornsby" //REPLACE THIS WITH DROPDOWN SHIT
 
     const bodyName = name || ""
-    const yearsArray = bodyName !== "" ? getTimesAndFormat(selectedName) : -1
+    const yearsArray = bodyName !== "" ? getTimesAndFormat(props.selectedName) : -1
     console.log(">>>" + yearsArray)
     const years = yearsArray || ":rip:"
 
@@ -71,7 +71,7 @@ export const Location = (props) => {
 
         return (<div style={cornerStyle}>
             <div style={cornerTextStyle}>
-                corner text here
+                Avocado
             </div>
         </div>)
     }
@@ -105,11 +105,15 @@ export const Location = (props) => {
         textAlign: "center",
         border: `${innerBorderWidth}px solid black`,
     }
+    const yearStyle = {
+        fontSize: SIZE_MODIFIER / 30 + VIEWPORT_UNIT,
+    }
 
-    const stringYears = years[yearIndex] === -1 ? "Never" : years[yearIndex]
+    const stringYears = years[yearIndex] === -1 ? "∞" : years[yearIndex]
+    const yearSpan = <span style={yearStyle}>{stringYears}</span>
     const bodyLocContent = <div>
         <>{bodyName}</>
-        <div>{lgaSpaces[yearIndex] != null && `Year: ${stringYears}`}</div>
+        <div>{lgaSpaces[yearIndex] != null && yearSpan}</div>
     </div>
 
     let insideLocation;
