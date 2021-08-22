@@ -1,5 +1,5 @@
-import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT, COLORS } from "./Constants";
-import { getTimes } from "./calculations";
+import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT, COLORS, lgaSpaces, targetList } from "./Constants";
+import { getTimesAndFormat } from "./calculations";
 
 export const Location = (props) => {
     // name - Name of the location eg. Kingsford (Best suburb)
@@ -32,13 +32,15 @@ export const Location = (props) => {
     // dynamic CSS values
     const innerBorderWidth = 1;
     // constants
-    const name = null;
+    const name = targetList[lgaSpaces[yearIndex]];
     const color = null;
 
-    const bodyName = name || "No Name :("
-    // const yearsArray = getTimes("Sydney"); // only for testing, please replace with actual user input LGA
-    // I think we're supposed to call getTimesAndFormat()
-    // const years = yearsArray[yearIndex] || ":rip:"
+    const selectedName = "Hornsby" //REPLACE THIS WITH DROPDOWN SHIT
+
+    const bodyName = name || ""
+    const yearsArray = bodyName !== "" ? getTimesAndFormat(selectedName) : -1
+    console.log(">>>" + yearsArray)
+    const years = yearsArray || ":rip:"
 
     const headColor = color || "purple"
     const bodyColor = MONOPOLY_BG_COLOR // Slightly off white MMMMMYES
@@ -104,12 +106,14 @@ export const Location = (props) => {
         border: `${innerBorderWidth}px solid black`,
     }
 
-    const bodyLocContent = <>
-        {/* {bodyName} Year: {years} */}
-    </>
+    const stringYears = years[yearIndex] === -1 ? "Never" : years[yearIndex]
+    const bodyLocContent = <div>
+        <>{bodyName}</>
+        <div>{lgaSpaces[yearIndex] != null && `Year: ${stringYears}`}</div>
+    </div>
 
     let insideLocation;
-    if ([1, 3, 4, 6, 10, 13, 15, 19, 22, 25, 29, 31, 32, 34].includes(yearIndex)) {
+    if (!(lgaSpaces[yearIndex] != null)) {
         insideLocation = <>
             <div style={{ ...bodyLocStyle, height: locationWidth }}>{bodyLocContent}</div>
         </>

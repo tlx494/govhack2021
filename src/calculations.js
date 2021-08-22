@@ -1,5 +1,5 @@
 // calculations for LGA etc
-
+import { lgaSpaces, targetList } from './Constants'
 import { inputData } from './inputData';
 
 // Household constants
@@ -19,30 +19,6 @@ const minDeposit = 0.15; // Minimum loan to value ratio
 
 let fatConstant = loanInterest * (1 + loanInterest) ** loanTenure / ((1 + loanInterest) ** loanTenure - 1);
 
-let targetList = [
-    "Campbelltown",
-    "Penrith",
-    "Liverpool",
-    "Wollongong",
-    "Blue Mountains",
-    "Blacktown",
-    "Ryde",
-    "Parramatta",
-    "Canterbury-Bankstown",
-    "Burwood",
-    "Sutherland Shire",
-    "Sydney",
-    "Hornsby",
-    "Lane Cove",
-    "North Sydney",
-    "Inner West",
-    "Randwick",
-    "Northern Beaches",
-    "Ku-ring-gai",
-    "Mosman",
-    "Hunters Hill",
-    "Woollahra"
-]
 
 export const getHouseholdIncome = (lga, t) => {
     const result = ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
@@ -102,6 +78,7 @@ export const getTimeToStart = (base_lga, target_lga) => {
     for (let i = 0; i < 26; i++) {
         let max_possible = getMaxPrice(base_lga, i);
         let house_price = getHousePrice(target_lga, i);
+
         if (max_possible >= house_price) {
             return i;
         }
@@ -125,6 +102,7 @@ export const getTimes = (lga) => {
 // int if it's possible to buy a house
 export const getTimesAndFormat = (lga) => {
     let output = getTimes(lga);
+    console.log(output)
     let final_output = [];
     for (let i = 0; i < 40; i++) {
         let ind = mapIndicesFromLongToShort(i)
@@ -145,6 +123,5 @@ export const getTimesAndFormat = (lga) => {
 
 // this is used to test getTimesAndFormat
 export const mapIndicesFromLongToShort = (ind) => {
-    let arr = [0, null, 1, null, null, 2, null, 3, 4, null, 5, null, 6, 7, null, 8, null, 9, 10, null, 11, null, 12, 13, null, 14, 15, null, 16, null, 17, 18, null, 19, null, null, 20, null, 21, null];
-    return arr[ind]
+    return lgaSpaces[ind]
 }
