@@ -31,6 +31,10 @@ export const Board = () => {
         );
     }
 
+
+    // dropodown
+    // use keys for the JSON file as LGA's
+
     return <Container fluid style={outerContainerStyle}>
         <div style={innerContainerStyle}>
             {outerRows}
