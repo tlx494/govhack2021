@@ -3,25 +3,26 @@
 import { inputData } from './inputData';
 
 // Household constants
-let expenseRate = 0.85; // Household expense as percentage of disposable income
-let rentRate = 0.225; // Household rent expenditure as percentage of disposable income
-let taxRate = 0.18; // Effective tax rate
-let cashInterest = 0.01; // Interest on cash savings
-let wageIncrease = 0.0056; // Wage growth for each additional year aged
-let ageMultiple = 1.17; // Adjustment factor for 30 yr olds earning more than population median
-let coupleFactor = 1.85; // Couple income as multiple of single income
+const expenseRate = 0.85; // Household expense as percentage of disposable income
+const rentRate = 0.225; // Household rent expenditure as percentage of disposable income
+const taxRate = 0.18; // Effective tax rate
+const cashInterest = 0.01; // Interest on cash savings
+const wageIncrease = 0.0056; // Wage growth for each additional year aged
+const ageMultiple = 1.17; // Adjustment factor for 30 yr olds earning more than population median
+const coupleFactor = 1.85; // Couple income as multiple of single income
 
 
 // Propert constants
-let propGrowthRate = 0.06129641461; // Annual property price growth rate
-let loanInterst = 0.03; // Home loan interest rate
-let loanTenure = 30; // Home loan duration in years
-let minDeposit = 0.15; // Minimum loan to value ratio
+const propGrowthRate = 0.06129641461; // Annual property price growth rate
+const loanInterest = 0.03; // Home loan interest rate
+const loanTenure = 30; // Home loan duration in years
+const minDeposit = 0.15; // Minimum loan to value ratio
 
-// let fatConstant = r * (1+r)^N / ((r+1)^N - 1);
+let fatConstant = loanInterest * (1 + loanInterest) ^ loanTenure / ((loanInterest + 1) ^ loanTenure - 1);
 
 export const getHouseholdIncome = (lga, t) => {
     return ageMultiple * coupleFactor * inputData[lga]['median_income_2021'];
+    // asdf
 }
 
 export const getIncome = (lga, t) => {
@@ -54,6 +55,7 @@ export const getMaxPriceDeposit = (lga, t) => {
 
 export const getMaxPriceRepayments = (lga, t) => {
     return getSavings(lga, t) + getNIS(lga, t) / fatConstant;
+    // return 0;
 }
 
 export const getMin = (x, y) => {

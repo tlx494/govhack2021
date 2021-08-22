@@ -1,4 +1,4 @@
-import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT } from "./Constants";
+import { MONOPOLY_BG_COLOR, SIZE_MODIFIER, TOTAL_LOCATIONS_IN_A_ROW, VIEWPORT_UNIT, COLORS } from "./Constants";
 import { getTimes } from "./calculations";
 
 export const Location = (props) => {
@@ -40,7 +40,7 @@ export const Location = (props) => {
     const headColor = color || "purple"
     const bodyColor = MONOPOLY_BG_COLOR // Slightly off white MMMMMYES
 
-    const locationWidthModifier = 0.0918;
+    const locationWidthModifier = 0.0919;
     const locationWidthVal = SIZE_MODIFIER * locationWidthModifier;
 
     const locationWidth = locationWidthVal + VIEWPORT_UNIT;
@@ -106,16 +106,41 @@ export const Location = (props) => {
     </>
 
     let insideLocation;
-    if (parentIndex === 0) { // if top row
+    if ([1, 3, 4, 6, 10, 13, 15, 19, 22, 25, 29, 31, 32, 34].includes(yearIndex)) {
         insideLocation = <>
-            <div style={{ ...bodyLocStyle }}>{bodyLocContent}</div>
-            <div style={{ ...headLocStyle }}></div>
+            <div style={{ ...bodyLocStyle, height: locationWidth }}>{bodyLocContent}</div>
         </>
     } else {
-        insideLocation = <>
-            <div style={headLocStyle}></div>
-            <div style={bodyLocStyle}>{bodyLocContent}</div>
-        </>
+        let headerColor;
+        if (yearIndex <= 3) {
+            headerColor = COLORS[0];
+        } else if (yearIndex <= 8) {
+            headerColor = COLORS[1];
+        } else if (yearIndex <= 13) {
+            headerColor = COLORS[2];
+        } else if (yearIndex <= 17) {
+            headerColor = COLORS[3];
+        } else if (yearIndex <= 22) {
+            headerColor = COLORS[4];
+        } else if (yearIndex <= 26) {
+            headerColor = COLORS[5];
+        } else if (yearIndex <= 30) {
+            headerColor = COLORS[6];
+        } else if (yearIndex <= 35) {
+            headerColor = COLORS[7];
+        }
+        const headerStyle = { ...headLocStyle, backgroundColor: headerColor }
+        if (parentIndex === 0) { // if top row
+            insideLocation = <>
+                <div style={{ ...bodyLocStyle }}>{bodyLocContent}</div>
+                <div style={headerStyle}></div>
+            </>
+        } else {
+            insideLocation = <>
+                <div style={headerStyle}></div>
+                <div style={bodyLocStyle}>{bodyLocContent}</div>
+            </>
+        }
     }
 
     return (<div style={locStyle} className="no-margin-or-padding">{insideLocation}</div>
